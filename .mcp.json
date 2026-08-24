@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "clay": {
+      "type": "http",
+      "url": "https://api.clay.com/v3/mcp"
+    },
+    "crm": {
+      "type": "http",
+      "url": "https://crm.example.com/api/mcp"
+    },
+    "gtm": {
+      "command": "/bin/bash",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/run-gtm-server.sh"],
+      "env": {
+        "CONTACT_TIERS_PATH": "${CLAUDE_PLUGIN_ROOT}/servers",
+        "N8N_BASE_URL": "http://127.0.0.1:5678"
+      }
+    }
+  }
+}

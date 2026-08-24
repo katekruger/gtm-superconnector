@@ -1,0 +1,6 @@
+runtime/
+dist/
+*.plugin
+__pycache__/
+*.pyc
+.DS_Store

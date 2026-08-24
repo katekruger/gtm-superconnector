@@ -1,0 +1,9 @@
+{
+  "name": "gtm",
+  "version": "0.1.0",
+  "description": "Consolidated GTM workflows for account research, outreach readiness, Clay reconciliation, activation analysis, and n8n operations.",
+  "author": {
+    "name": "Kate Kruger"
+  },
+  "keywords": ["gtm", "clay", "crm", "outreach", "n8n", "instantly"]
+}
