@@ -1,0 +1,21 @@
+{
+  "_comment": "Copy to config/clay-functions.json and edit. This file is the local approval and cost contract surfaced by the clay_list_approved_functions tool. It never executes anything — Clay Functions run through the official Clay MCP connector.",
+  "functions": [
+    {
+      "name": "find-company-by-domain",
+      "expected_outputs": ["company_name", "employee_count", "industry"],
+      "max_rows": 500,
+      "estimated_credits_per_row": 1,
+      "permissions": ["read"],
+      "approved": true
+    },
+    {
+      "name": "enrich-person-email",
+      "expected_outputs": ["email", "verification_status", "linkedin_url"],
+      "max_rows": 100,
+      "estimated_credits_per_row": 3,
+      "permissions": ["read", "paid"],
+      "approved": false
+    }
+  ]
+}

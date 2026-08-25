@@ -13,6 +13,7 @@
       "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/run-gtm-server.sh"],
       "env": {
         "CONTACT_TIERS_PATH": "${CLAUDE_PLUGIN_ROOT}/servers",
+        "CLAY_FUNCTION_POLICY_PATH": "${CLAUDE_PLUGIN_ROOT}/config/clay-functions.json",
         "N8N_BASE_URL": "http://127.0.0.1:5678"
       }
     }

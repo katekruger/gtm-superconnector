@@ -1,9 +1,13 @@
 {
-  "name": "gtm",
-  "version": "0.1.0",
-  "description": "Consolidated GTM workflows for account research, outreach readiness, Clay reconciliation, activation analysis, and n8n operations.",
+  "name": "gtm-superconnector",
+  "version": "0.2.0",
+  "description": "Evidence-first GTM workflows for Claude: account research, outreach readiness, CRM reconciliation, activation analysis, and guarded n8n operations. Every tool is preview-only by default.",
   "author": {
-    "name": "Kate Kruger"
+    "name": "Kate Kruger",
+    "url": "https://github.com/katekruger"
   },
-  "keywords": ["gtm", "clay", "crm", "outreach", "n8n", "instantly"]
+  "homepage": "https://github.com/katekruger/gtmplugin",
+  "repository": "https://github.com/katekruger/gtmplugin",
+  "license": "MIT",
+  "keywords": ["gtm", "sales", "crm", "clay", "outreach", "n8n", "mcp", "claude-code"]
 }

@@ -51,14 +51,14 @@ def gtm_resolve_contact_email(
     allow_paid_verification: bool = False,
     allow_pdl: bool = False,
 ) -> dict[str, Any]:
-    """Run the shared email waterfall. Paid Hunter/PDL tiers are opt-in; only verified results are send-ready."""
-    outreach = Path(os.getenv("CONTACT_TIERS_PATH", Path(__file__).parents[3] / "contact-tiers"))
+    """Run the four-tier email waterfall. Paid Hunter/PDL tiers are opt-in; only verified results are send-ready."""
+    outreach = Path(os.getenv("CONTACT_TIERS_PATH", Path(__file__).parents[1]))
     if str(outreach) not in sys.path:
         sys.path.insert(0, str(outreach))
     try:
         import contact_tiers as ct
     except ImportError as exc:
-        raise ValueError(f"Could not load the shared contact_tiers resolver from {outreach}: {exc}") from exc
+        raise ValueError(f"Could not load the contact_tiers resolver from {outreach}: {exc}") from exc
     context = ct.email_context(domain, github_org)
     email, raw_status, linkedin_url = ct.resolve_email(
         name, domain, context, login=github_login, company=company,
@@ -94,7 +94,7 @@ def gtm_reconcile_clay_snapshot(current_rows: list[dict[str, Any]], incoming_row
 
 @mcp.tool(annotations={"readOnlyHint": True})
 def gtm_detect_activation_dropoff(users: list[dict[str, Any]], inactive_days: int = 14, as_of: str | None = None) -> list[dict[str, Any]]:
-    """Find installed-without-repo, history-then-inactive, and no-proof-moment users from product fields."""
+    """Find installed-without-repo, history-then-inactive, and no-proof-moment users from product usage fields."""
     return detect_activation_dropoff(users, inactive_days, as_of)
 
 
@@ -108,7 +108,7 @@ def gtm_preview_campaign_build(
     tags: list[str] | None = None,
     lead_list_id: str | None = None,
 ) -> dict[str, Any]:
-    """Build a paused campaign preview for Cowork with zero external writes or HTTP calls."""
+    """Build a paused campaign preview with zero external writes or HTTP calls."""
     return preview_campaign_build(name, subject, body, timezone_name, sender_accounts, tags, lead_list_id)
 
 

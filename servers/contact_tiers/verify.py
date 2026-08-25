@@ -29,7 +29,11 @@ import requests
 from .cache import env as _env, get_cache as _cache
 from . import patterns as _pat
 
-_SENDER = "research@example.com"   # neutral MAIL FROM for the probe
+# Identity used for the SMTP RCPT probe. Set SMTP_PROBE_DOMAIN to a domain you
+# control — receiving mail servers log the HELO/MAIL FROM pair, and probing with
+# a domain you do not own is both impolite and bad for your sending reputation.
+_SMTP_PROBE_DOMAIN = _env("SMTP_PROBE_DOMAIN") or "example.com"
+_SENDER = f"research@{_SMTP_PROBE_DOMAIN}"   # neutral MAIL FROM for the probe
 _SMTP_TIMEOUT = 8
 
 
@@ -77,7 +81,7 @@ def _smtp_probe(domain: str, address: str) -> Dict:
         try:
             srv = smtplib.SMTP(timeout=_SMTP_TIMEOUT)
             srv.connect(host, 25)
-            srv.helo("example.com")
+            srv.helo(_SMTP_PROBE_DOMAIN)
             srv.mail(_SENDER)
             code_real, _ = srv.rcpt(address)
             code_rand, _ = srv.rcpt(rand)

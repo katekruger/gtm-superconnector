@@ -1,6 +1,23 @@
+# Build artifacts
 runtime/
 dist/
 *.plugin
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Secrets and local config — never commit these
+.env
+config/clay-functions.json
+
+# Local caches written by the contact resolver
+.cache/
+
+# macOS
 .DS_Store

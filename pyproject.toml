@@ -1,0 +1,44 @@
+[project]
+name = "gtm-mcp"
+version = "0.2.0"
+description = "Deterministic, preview-only GTM tooling exposed over the Model Context Protocol."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Kate Kruger" }]
+keywords = ["gtm", "mcp", "clay", "n8n", "outreach"]
+dependencies = [
+    "fastmcp>=2.12,<3",
+    "httpx>=0.27,<1",
+    "requests>=2.31,<3",
+    "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0,<9", "ruff>=0.6,<1"]
+
+[project.urls]
+Homepage = "https://github.com/katekruger/gtmplugin"
+Issues = "https://github.com/katekruger/gtmplugin/issues"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = { "" = "servers" }
+
+[tool.setuptools.packages.find]
+where = ["servers"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["servers"]
+
+[tool.ruff]
+line-length = 200
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]

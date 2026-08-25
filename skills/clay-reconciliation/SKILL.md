@@ -2,7 +2,7 @@
 name: clay-reconciliation
 description: >
   This skill should be used when the user asks to "reconcile Clay", "diff the user snapshot",
-  "sync product users", "check schema drift", or distinguish deduplication from upsert behavior.
+  "sync users", "check schema drift", or distinguish deduplication from upsert behavior.
 ---
 
 # Clay reconciliation

@@ -1,10 +1,17 @@
-"""Shared contact-resolution tiers for every contact-tiers scraping flow.
+"""Shared contact-resolution tiers.
 
-One implementation, used by `find_contacts.py`, the `Raw B2B Company Targets/`
-pipeline, and `build1000/`. Lives at the repo root and depends only on stdlib +
-requests (+ devpost_enrich, lazily, for the GitHub token) — deliberately NOT on
-`reuse` or `find_contacts`, since `reuse` imports `find_contacts` and any such
-dependency would be a circular import.
+A single four-tier email resolver, ordered by certainty and cost — free and
+factual first, paid guesswork last. Each tier only handles what the one above
+it could not resolve:
+
+  1. git_emails  — the real address a person publishes in their own commits
+  2. patterns    — the company's address format, learned from tier 1's real
+                   addresses, applied to people we only have a name for
+  3. verify      — MX/SMTP/Hunter confirm or reject
+  4. pdl         — paid lookup for the remainder; also the only linkedin_url source
+
+Depends only on the standard library plus `requests`. Tier 4 (`pdl`) and the
+paid side of tier 3 are opt-in and stay disabled unless explicitly enabled.
 
 Typical use:
 
@@ -15,7 +22,8 @@ Typical use:
     email, status, li = ct.resolve_email(name, domain, ctx, login=gh_login)
 
 See `resolve.resolve_email` for the status vocabulary — it is deliberately
-honest about the difference between a real address, an inferred one, and a guess.
+honest about the difference between a real address, an inferred one, and a
+guess. Only `verified` and `verified:commit` are ever send-ready.
 """
 
 from .cache import DiskCache, env, get_cache, set_cache

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Lint, test, and verify the plugin manifest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint
+        run: ruff check servers tests
+
+      - name: Verify the MCP server imports cleanly
+        run: PYTHONPATH=servers python -c "import gtm_mcp.server"
+
+      - name: Validate JSON manifests
+        run: |
+          python -c "import json; json.load(open('.claude-plugin/plugin.json'))"
+          python -c "import json; json.load(open('.mcp.json'))"
+          python -c "import json; json.load(open('config/clay-functions.example.json'))"
+
+      - name: Verify shell scripts parse
+        run: |
+          bash -n scripts/build-plugin.sh
+          bash -n scripts/run-gtm-server.sh
+
+      - name: Test
+        run: pytest -q

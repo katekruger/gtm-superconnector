@@ -143,7 +143,7 @@ def preview_campaign_build(
     tags: list[str] | None = None,
     lead_list_id: str | None = None,
 ) -> dict[str, Any]:
-    """Return a portable, zero-write campaign plan for Cowork workflows."""
+    """Return a portable, zero-write campaign plan. Never touches the network."""
     return {
         "campaign": {
             "name": name,

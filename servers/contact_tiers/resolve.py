@@ -1,4 +1,4 @@
-"""The four-tier email resolver, shared by every flow in the repo.
+"""The four-tier email resolver.
 
 Ordered by certainty and cost — free and factual first, paid guesswork last.
 Each tier only handles what the one above it couldn't:
@@ -9,9 +9,8 @@ Each tier only handles what the one above it couldn't:
   3. verify      — MX/SMTP/Hunter confirm or reject
   4. pdl         — paid lookup for the remainder; also the only linkedin_url source
 
-The status vocabulary is deliberately narrow about what we actually know. The
-old flow labelled every row `guessed:first` regardless of evidence; nothing here
-is allowed to round a guess up into a fact.
+The status vocabulary is deliberately narrow about what we actually know.
+Nothing here is allowed to round a guess up into a fact.
 """
 
 from __future__ import annotations
