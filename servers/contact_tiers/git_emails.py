@@ -24,7 +24,7 @@ from __future__ import annotations
 import re
 from typing import Dict, List
 
-from .cache import env as _env, get_cache as _cache
+from .cache import get_cache as _cache
 
 _GH = "https://api.github.com"
 

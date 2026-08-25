@@ -16,10 +16,9 @@ matching on hosts matched ramp.com inside liveramp.com. Both are guarded here.
 from __future__ import annotations
 
 import re
-from typing import Optional
 from urllib.parse import quote, urlparse
 
-from .cache import env as _env, get_cache as _cache
+from .cache import get_cache as _cache
 
 GH = "https://api.github.com"
 

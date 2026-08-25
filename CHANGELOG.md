@@ -42,6 +42,7 @@ First public release. Renamed, documented, and tested; tool behavior is unchange
   do not control is impolite and affects sending reputation.
 - Package and module docstrings no longer reference files from an unrelated
   repository.
+- Removed three dead imports in `contact_tiers` flagged by the new lint step.
 
 ### Added
 
