@@ -1,0 +1,22 @@
+{
+  "name": "gtmplugin",
+  "owner": {
+    "name": "Kate Kruger",
+    "url": "https://github.com/katekruger"
+  },
+  "description": "Evidence-first GTM tooling for Claude Code.",
+  "plugins": [
+    {
+      "name": "gtm-superconnector",
+      "displayName": "GTM Superconnector",
+      "source": "./",
+      "description": "Evidence-first GTM workflows for Claude: account research, outreach readiness, CRM reconciliation, activation analysis, and guarded n8n operations. Every tool is preview-only by default.",
+      "version": "0.2.0",
+      "author": { "name": "Kate Kruger", "url": "https://github.com/katekruger" },
+      "homepage": "https://github.com/katekruger/gtmplugin",
+      "repository": "https://github.com/katekruger/gtmplugin",
+      "license": "MIT",
+      "keywords": ["gtm", "sales", "crm", "clay", "outreach", "n8n", "mcp"]
+    }
+  ]
+}
