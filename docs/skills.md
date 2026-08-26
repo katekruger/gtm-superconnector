@@ -2,11 +2,15 @@
 
 A skill is a procedure Claude follows — an ordered sequence of tool calls with explicit stopping points. They live in [`skills/`](../skills/), one directory each, with a `SKILL.md` and optional `references/`.
 
-Every skill in this plugin shares three properties:
+Every skill in this plugin shares four properties:
 
 1. **Read before write.** Check the CRM before enriching; get the complete dataset before analyzing.
-2. **Preserve uncertainty.** Missing fields are reported as missing. Partial results are labelled partial.
-3. **Stop at a gate.** No skill sends, uploads, launches, or writes back without separate explicit approval.
+2. **Degrade, never substitute.** The CRM connector is user-supplied and may be absent. When it
+   is, the skill says so and labels its output partial. It never fills a missing CRM field from
+   Clay and presents it as a CRM record — that would convert "unknown" into "known", which is
+   the exact failure this plugin exists to prevent.
+3. **Preserve uncertainty.** Missing fields are reported as missing. Partial results are labelled partial.
+4. **Stop at a gate.** No skill sends, uploads, launches, or writes back without separate explicit approval.
 
 ---
 
@@ -14,7 +18,7 @@ Every skill in this plugin shares three properties:
 
 **Triggers on:** research an account, get account 360, source ICP companies, rank accounts, find the best contact.
 
-Searches the CRM by domain first, uses Clay only to fill genuine gaps, then scores through `gtm_score_icp_accounts`, `gtm_rank_team_adoption`, and `gtm_rank_best_contact`.
+Searches the CRM by domain first (skipping that step, and labelling the run partial, when no CRM is configured), uses Clay only to fill genuine gaps, then scores through `gtm_score_icp_accounts`, `gtm_rank_team_adoption`, and `gtm_rank_best_contact`.
 
 Two rules do the heavy lifting:
 

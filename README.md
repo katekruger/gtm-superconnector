@@ -2,7 +2,7 @@
 
 A [Claude Code](https://claude.com/claude-code) plugin for go-to-market work that refuses to guess.
 
-It bundles five GTM skills with a local MCP server providing deterministic scoring, contact resolution, and guarded automation — wired to Clay and a CRM. The organizing principle: **evidence or silence.** An inferred email address is never reported as a real one, absence of evidence is never converted into a negative claim, and no tool sends, uploads, or launches anything without a separate explicit approval.
+It bundles five GTM skills with a local MCP server providing deterministic scoring, contact resolution, and guarded automation — wired to Clay and to a CRM endpoint you supply. The organizing principle: **evidence or silence.** An inferred email address is never reported as a real one, absence of evidence is never converted into a negative claim, and no tool sends, uploads, or launches anything without a separate explicit approval.
 
 [![CI](https://github.com/katekruger/gtmplugin/actions/workflows/ci.yml/badge.svg)](https://github.com/katekruger/gtmplugin/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -119,7 +119,7 @@ Each skill is a procedure Claude follows, not a prompt template. They live in [`
 | Connector | Type | Purpose |
 |---|---|---|
 | `clay` | Remote HTTP MCP | Discovery, enrichment, and enabled Clay Functions |
-| `crm` | Remote HTTP MCP | CRM records and audited activity |
+| `crm` | Remote HTTP MCP | CRM records and audited activity. **User-supplied** — set `crm_mcp_url` to your own endpoint, or leave it blank and the skills degrade to partial results. |
 | `gtm` | Local stdio MCP | Everything deterministic — scoring, reconciliation, previews, n8n |
 
 The two remote connectors work anywhere Claude runs. **The local `gtm` connector requires a desktop Claude Code session** — it is a local process, so it is unavailable when the desktop app is closed or when an administrator disables local plugin MCP servers. See [docs/architecture.md](docs/architecture.md#availability-boundary).
