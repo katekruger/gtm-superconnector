@@ -29,19 +29,30 @@ jobs:
       - name: Verify the MCP server imports cleanly
         run: PYTHONPATH=servers python -c "import gtm_mcp.server"
 
-      - name: Validate JSON manifests
+      - name: Validate every JSON file parses
+        # rglob, not glob("**/*.json") — the latter skips dotfile directories,
+        # which is where both plugin manifests live.
         run: |
-          python -c "import json; json.load(open('.claude-plugin/plugin.json'))"
-          python -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
-          python -c "import json; json.load(open('.mcp.json'))"
-          python -c "import json; json.load(open('.version-bump.json'))"
-          python -c "import json; json.load(open('config/clay-functions.example.json'))"
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          files = [p for p in Path('.').rglob('*.json')
+                   if '.git' not in p.parts and 'node_modules' not in p.parts]
+          assert len(files) >= 5, f"expected at least 5 JSON files, found {len(files)}"
+          for f in files:
+              try:
+                  json.loads(f.read_text())
+              except json.JSONDecodeError as exc:
+                  sys.exit(f"{f}: {exc}")
+          print(f"{len(files)} JSON files parse")
+          for f in sorted(files):
+              print(f"  {f}")
+          PY
 
       - name: Validate the plugin manifests against the Claude Code spec
         run: |
           npm install -g @anthropic-ai/claude-code
-          claude plugin validate .claude-plugin/plugin.json --strict
-          claude plugin validate .claude-plugin/marketplace.json --strict
+          ./scripts/validate-plugin.sh
 
       - name: Verify skill frontmatter
         run: python scripts/check-skills.py
