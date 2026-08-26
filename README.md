@@ -63,11 +63,11 @@ Each skill is a procedure Claude follows, not a prompt template. They live in [`
 
 | Skill | Use when you want to | Stops at |
 |---|---|---|
-| [account-intelligence](skills/account-intelligence/SKILL.md) | Research an account, source ICP companies, rank targets, find the best contact | A ranked summary with explicit missing fields |
-| [outreach-builder](skills/outreach-builder/SKILL.md) | Build a campaign, verify a contact, prepare design-partner outreach | A paused campaign preview |
-| [clay-reconciliation](skills/clay-reconciliation/SKILL.md) | Diff a user snapshot against Clay, check schema drift | A dry run |
-| [activation-review](skills/activation-review/SKILL.md) | Find activation drop-off and missing proof moments | Cohort counts and recommendations |
-| [n8n-operations](skills/n8n-operations/SKILL.md) | Debug a workflow failure, dry-run, retry an execution | A retry preview |
+| [researching-accounts](skills/researching-accounts/SKILL.md) | Research an account, source ICP companies, rank targets, find the best contact | A ranked summary with explicit missing fields |
+| [building-outreach-campaigns](skills/building-outreach-campaigns/SKILL.md) | Build a campaign, verify a contact, prepare design-partner outreach | A paused campaign preview |
+| [reconciling-clay-snapshots](skills/reconciling-clay-snapshots/SKILL.md) | Diff a user snapshot against Clay, check schema drift | A dry run |
+| [reviewing-activation-dropoff](skills/reviewing-activation-dropoff/SKILL.md) | Find activation drop-off and missing proof moments | Cohort counts and recommendations |
+| [debugging-n8n-workflows](skills/debugging-n8n-workflows/SKILL.md) | Debug a workflow failure, dry-run, retry an execution | A retry preview |
 
 ## The three connectors
 

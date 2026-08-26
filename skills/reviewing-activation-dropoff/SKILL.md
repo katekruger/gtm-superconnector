@@ -1,11 +1,13 @@
 ---
-name: activation-review
+name: reviewing-activation-dropoff
 description: >
-  This skill should be used when the user asks to "find activation drop-off", "analyze inactive users",
-  "find users without repositories", or identify missing product proof moments.
+  Use when the user asks to "find activation drop-off", "analyze inactive users",
+  "find users without repositories", "who installed but never used it", or asks which
+  users are missing a proof moment. Also use when an activation or retention number
+  needs explaining rather than reporting.
 ---
 
-# Activation review
+# Reviewing activation drop-off
 
 1. Obtain the latest complete user dataset rather than a partial contact export.
 2. Call `gtm_detect_activation_dropoff` with the requested inactivity window.

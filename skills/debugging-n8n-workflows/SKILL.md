@@ -1,11 +1,13 @@
 ---
-name: n8n-operations
+name: debugging-n8n-workflows
 description: >
-  This skill should be used when the user asks to "debug n8n", "inspect a workflow failure",
-  "dry run a workflow", "retry an execution", or find the last-known-good n8n output.
+  Use when the user asks to "debug n8n", "inspect a workflow failure", "why did this
+  workflow fail", "dry run a workflow", "retry an execution", or wants the
+  last-known-good output for a workflow. Also use when an automation has silently
+  stopped producing results.
 ---
 
-# n8n operations
+# Debugging n8n workflows
 
 1. Call `n8n_health` first.
 2. Use only workflows returned by `n8n_list_approved_workflows`.

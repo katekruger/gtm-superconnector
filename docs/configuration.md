@@ -57,7 +57,7 @@ gtm_resolve_contact_email(name="...", domain="...", allow_paid_verification=True
 gtm_resolve_contact_email(name="...", domain="...", allow_pdl=True)               # tier 4 paid
 ```
 
-Both default to `False`, and the response echoes `cost_controls` so spend is visible in the transcript. The [outreach-builder](../skills/outreach-builder/SKILL.md) skill keeps both disabled unless the user approves the cost.
+Both default to `False`, and the response echoes `cost_controls` so spend is visible in the transcript. The [building-outreach-campaigns](../skills/building-outreach-campaigns/SKILL.md) skill keeps both disabled unless the user approves the cost.
 
 ### Set `SMTP_PROBE_DOMAIN` to a domain you own
 
