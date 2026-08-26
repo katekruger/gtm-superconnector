@@ -73,12 +73,12 @@ First public release. Renamed, documented, and tested; tool behavior is unchange
 
 ### Changed
 
-- **Renamed throughout.** `servers/gtm_mcp/` → `servers/gtm_mcp/`;
-  `run-gtm-server.sh` → `run-gtm-server.sh`; MCP server keys `gtm` → `gtm`
-  and `crm` → `crm`; plugin name → `gtm-superconnector`.
-- **`CONTACT_TIERS_PATH` → `CONTACT_TIERS_PATH`.**
-- **Account input field `product_users` → `product_users`.** The `user_count`
-  alias is unchanged, so callers already using it are unaffected.
+- **Renamed throughout**, dropping company-specific branding from the Python
+  package path, the launcher script, the MCP server keys, and the plugin name,
+  which is now `gtm-superconnector`.
+- **Environment variable renamed** to `CONTACT_TIERS_PATH`.
+- **Account input field renamed to `product_users`.** The `user_count` alias is
+  unchanged, so callers already using it are unaffected.
 - **The SMTP probe identity is configurable** via `SMTP_PROBE_DOMAIN` instead of
   hardcoded, defaulting to the reserved `example.com`. Probing with a domain you
   do not control is impolite and affects sending reputation.

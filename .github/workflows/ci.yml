@@ -54,6 +54,18 @@ jobs:
           npm install -g @anthropic-ai/claude-code
           ./scripts/validate-plugin.sh
 
+      - name: No company-specific branding in the tree
+        # The CRM endpoint is user-supplied. A vendor name reappearing here means
+        # a hardcoded endpoint has come back with it.
+        run: |
+          # The bracket keeps the literal string out of this file, so the gate
+          # does not match its own source and fail every build.
+          if grep -rniE "m[e]rget" . --exclude-dir=.git --exclude-dir=node_modules; then
+            echo "::error::Company-specific branding found. The CRM endpoint must stay user-supplied via userConfig."
+            exit 1
+          fi
+          echo "No company-specific branding found."
+
       - name: Verify skill frontmatter
         run: python scripts/check-skills.py
 

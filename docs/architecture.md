@@ -16,7 +16,12 @@ Skills are procedures, not prompts. Each one names the tools to call, the order 
 
 ## Why the local connector exists
 
-Clay and the CRM are remote HTTP MCP servers — they work anywhere Claude runs. So why bundle a local Python server at all?
+Clay and the CRM are remote HTTP MCP servers — they work anywhere Claude runs. The CRM
+endpoint is not bundled: it is a `userConfig` value (`crm_mcp_url`) that you point at your
+own server. Left blank, the CRM connector is simply absent and the skills that would have
+used it label their results partial rather than substituting another source.
+
+So why bundle a local Python server at all?
 
 Because three categories of work should not be delegated to a language model:
 

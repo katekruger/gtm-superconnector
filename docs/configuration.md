@@ -10,6 +10,19 @@ cp .env.example .env
 
 The server loads `.env` at startup via `python-dotenv`. Variables already present in the environment take precedence.
 
+## userConfig (set at install time)
+
+Declared in the manifest and prompted for by `/plugin configure`, or passed with
+`claude plugin install --config KEY=VALUE`. Both are optional.
+
+| Key | What it unlocks | Left blank |
+|---|---|---|
+| `crm_mcp_url` | The `crm` connector, pointed at **your own** CRM MCP server | The connector is absent. Skills that would use it say so and label results partial — they never substitute another source. |
+| `n8n_base_url` | The n8n instance the local server talks to | Defaults to `http://127.0.0.1:5678` |
+
+No CRM endpoint ships with this plugin. There is no default, and no
+maintainer-controlled host anywhere in the configuration.
+
 ## Path variables
 
 Normally set automatically by [`.mcp.json`](../.mcp.json) using `${CLAUDE_PLUGIN_ROOT}`. Override only for unusual layouts.

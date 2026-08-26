@@ -9,7 +9,10 @@ description: >
 
 # Building outreach campaigns
 
-1. Retrieve the existing CRM account and prior replies before generating new outreach.
+1. Retrieve the existing CRM account and prior replies before generating new
+   outreach. The CRM connector is user-supplied: if it is not configured, say so
+   and continue without prior-contact history — but flag that the campaign cannot
+   be checked against previous outreach, which is a real risk of duplicate sends.
 2. Use `gtm_rank_best_contact` to rank candidates.
 3. Use `gtm_resolve_contact_email` only when an address is missing. Keep paid verification and PDL disabled unless the user approves the cost-bearing tier.
 4. Use `gtm_classify_email_readiness` for every selected address.
