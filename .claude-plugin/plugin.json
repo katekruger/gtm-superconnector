@@ -1,5 +1,6 @@
 {
   "name": "gtm-superconnector",
+  "displayName": "GTM Superconnector",
   "version": "0.2.0",
   "description": "Evidence-first GTM workflows for Claude: account research, outreach readiness, CRM reconciliation, activation analysis, and guarded n8n operations. Every tool is preview-only by default.",
   "author": {
@@ -9,5 +10,20 @@
   "homepage": "https://github.com/katekruger/gtmplugin",
   "repository": "https://github.com/katekruger/gtmplugin",
   "license": "MIT",
-  "keywords": ["gtm", "sales", "crm", "clay", "outreach", "n8n", "mcp", "claude-code"]
+  "keywords": ["gtm", "sales", "crm", "clay", "outreach", "n8n", "mcp"],
+  "userConfig": {
+    "crm_mcp_url": {
+      "type": "string",
+      "title": "CRM MCP endpoint",
+      "description": "HTTPS URL of your own CRM MCP server. Leave blank to run without the CRM connector — every deterministic tool still works.",
+      "required": false
+    },
+    "n8n_base_url": {
+      "type": "string",
+      "title": "n8n base URL",
+      "description": "Base URL of your n8n instance. Defaults to a local instance on port 5678.",
+      "default": "http://127.0.0.1:5678",
+      "required": false
+    }
+  }
 }
