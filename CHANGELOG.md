@@ -29,15 +29,13 @@ All notable changes to this project are documented here. Format follows
 
 ### Changed
 
-- **BREAKING: all five skills renamed to verb-first form.** Invocation names change:
-  `account-intelligence` → `researching-accounts`,
-  `outreach-builder` → `building-outreach-campaigns`,
-  `clay-reconciliation` → `reconciling-clay-snapshots`,
-  `activation-review` → `reviewing-activation-dropoff`,
-  `n8n-operations` → `debugging-n8n-workflows`.
-  Anyone invoking these by their old name must update.
 - Every skill description rewritten to open with "Use when" and lead with real
-  user phrasings instead of `This skill should be used when...`.
+  user phrasings instead of `This skill should be used when...`. Skill names are
+  unchanged, so no invocation breaks.
+- **The `crm` connector is now user-supplied.** Its endpoint moved from a
+  hardcoded URL to the optional `crm_mcp_url` userConfig key. Skills that used
+  the CRM now degrade explicitly: they say the connector is absent and label
+  their results partial rather than substituting another source.
 - CI now runs `claude plugin validate --strict` on both manifests, the skill
   checker, the version-agreement check, and a gitleaks scan over full history.
 - Manifest gains `displayName`.

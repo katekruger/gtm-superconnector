@@ -15,7 +15,7 @@ labels: bug
 <!-- e.g. macOS 15.4, Python 3.12.7 -->
 
 **Which tool or skill**
-<!-- e.g. gtm_classify_email_readiness, or the researching-accounts skill -->
+<!-- e.g. gtm_classify_email_readiness, or the account-intelligence skill -->
 
 **Steps to reproduce**
 1.

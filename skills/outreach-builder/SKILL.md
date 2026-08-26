@@ -1,5 +1,5 @@
 ---
-name: building-outreach-campaigns
+name: outreach-builder
 description: >
   Use when the user asks to "build an outreach campaign", "prepare design partner
   outreach", "draft a campaign", "verify a contact", "find this person's email", or
@@ -7,7 +7,7 @@ description: >
   stated intent is sending rather than research.
 ---
 
-# Building outreach campaigns
+# Outreach builder
 
 1. Retrieve the existing CRM account and prior replies before generating new
    outreach. The CRM connector is user-supplied: if it is not configured, say so

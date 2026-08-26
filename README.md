@@ -38,7 +38,10 @@ gtmplugin/                     # the repo root IS the plugin
 
 ## Requirements
 
-- **Python 3.12+** — the MCP server uses PEP 604 unions that FastMCP resolves at runtime
+- **Python 3.12+** — `servers/gtm_mcp/server.py` uses PEP 604 unions (`str | None`)
+  in its tool signatures, and FastMCP resolves those annotations at runtime to build
+  the MCP tool schemas. On 3.11 or earlier that raises at import. This is a hard
+  constraint, not a preference.
 - **Claude Code v2.1.x or newer** — for `userConfig` and marketplace install
 - No API keys required to start. Credentials only unlock the n8n and paid-enrichment tiers.
 
@@ -108,11 +111,11 @@ Each skill is a procedure Claude follows, not a prompt template. They live in [`
 
 | Skill | Use when you want to | Stops at |
 |---|---|---|
-| [researching-accounts](skills/researching-accounts/SKILL.md) | Research an account, source ICP companies, rank targets, find the best contact | A ranked summary with explicit missing fields |
-| [building-outreach-campaigns](skills/building-outreach-campaigns/SKILL.md) | Build a campaign, verify a contact, prepare design-partner outreach | A paused campaign preview |
-| [reconciling-clay-snapshots](skills/reconciling-clay-snapshots/SKILL.md) | Diff a user snapshot against Clay, check schema drift | A dry run |
-| [reviewing-activation-dropoff](skills/reviewing-activation-dropoff/SKILL.md) | Find activation drop-off and missing proof moments | Cohort counts and recommendations |
-| [debugging-n8n-workflows](skills/debugging-n8n-workflows/SKILL.md) | Debug a workflow failure, dry-run, retry an execution | A retry preview |
+| [account-intelligence](skills/account-intelligence/SKILL.md) | Research an account, source ICP companies, rank targets, find the best contact | A ranked summary with explicit missing fields |
+| [outreach-builder](skills/outreach-builder/SKILL.md) | Build a campaign, verify a contact, prepare design-partner outreach | A paused campaign preview |
+| [clay-reconciliation](skills/clay-reconciliation/SKILL.md) | Diff a user snapshot against Clay, check schema drift | A dry run |
+| [activation-review](skills/activation-review/SKILL.md) | Find activation drop-off and missing proof moments | Cohort counts and recommendations |
+| [n8n-operations](skills/n8n-operations/SKILL.md) | Debug a workflow failure, dry-run, retry an execution | A retry preview |
 
 ## The three connectors
 

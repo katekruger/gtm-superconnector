@@ -1,5 +1,5 @@
 ---
-name: reconciling-clay-snapshots
+name: clay-reconciliation
 description: >
   Use when the user asks to "reconcile Clay", "diff the user snapshot", "sync users",
   "check schema drift", or asks what changed between two exports. Also use when
@@ -7,7 +7,7 @@ description: >
   read as an update count.
 ---
 
-# Reconciling Clay snapshots
+# Clay reconciliation
 
 1. Obtain the latest complete product user snapshot and current Clay rows without changing either system.
 2. Use `user_id` as the default reconciliation key.
