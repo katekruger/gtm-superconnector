@@ -10,7 +10,7 @@ Every skill in this plugin shares three properties:
 
 ---
 
-## account-intelligence
+## researching-accounts — Researching accounts
 
 **Triggers on:** research an account, get account 360, source ICP companies, rank accounts, find the best contact.
 
@@ -21,13 +21,13 @@ Two rules do the heavy lifting:
 - Coding-agent, open-source, AI-tooling, and developer-workflow claims **require source URLs**. Truthiness-checked evidence fields mean an unsourced `true` would score identically to a real citation — the skill closes that gap procedurally.
 - *"Do not convert absence of evidence into a negative claim."* A missing signal is missing, not false.
 
-Scoring criteria: [`skills/account-intelligence/references/criteria.md`](../skills/account-intelligence/references/criteria.md).
+Scoring criteria: [`skills/researching-accounts/references/criteria.md`](../skills/researching-accounts/references/criteria.md).
 
 **Ends at:** a ranked summary with evidence, missing fields, and a recommended next research step.
 
 ---
 
-## outreach-builder
+## building-outreach-campaigns — Building outreach campaigns
 
 **Triggers on:** build an outreach campaign, prepare design-partner outreach, verify a contact, draft a campaign.
 
@@ -35,13 +35,13 @@ The longest chain in the plugin, and the one with the most gates. It retrieves p
 
 Paid verification and PDL stay **disabled** unless the user approves the cost. Only `verified` and `verified:commit` are treated as send-ready; everything else is quarantined.
 
-**Ends at:** a preview. Contact upload, CRM write-back, campaign creation, launch, and sending each require separate approval — see [`references/approval-gates.md`](../skills/outreach-builder/references/approval-gates.md).
+**Ends at:** a preview. Contact upload, CRM write-back, campaign creation, launch, and sending each require separate approval — see [`references/approval-gates.md`](../skills/building-outreach-campaigns/references/approval-gates.md).
 
 The final gate rule is worth quoting: **never construct email addresses by hand.** A hand-built address bypasses the entire status vocabulary.
 
 ---
 
-## clay-reconciliation
+## reconciling-clay-snapshots — Reconciling Clay snapshots
 
 **Triggers on:** reconcile Clay, diff the user snapshot, sync users, check schema drift.
 
@@ -53,7 +53,7 @@ The subtle rule: *treat deduplication as duplicate suppression only.* A deduplic
 
 ---
 
-## activation-review
+## reviewing-activation-dropoff — Reviewing activation drop-off
 
 **Triggers on:** find activation drop-off, analyze inactive users, find users without repositories.
 
@@ -65,7 +65,7 @@ Reports **missing instrumentation** alongside results, so a gap in tracking is n
 
 ---
 
-## n8n-operations
+## debugging-n8n-workflows — Debugging n8n workflows
 
 **Triggers on:** debug n8n, inspect a workflow failure, dry run a workflow, retry an execution.
 

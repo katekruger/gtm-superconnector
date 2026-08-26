@@ -1,11 +1,13 @@
 ---
-name: outreach-builder
+name: building-outreach-campaigns
 description: >
-  This skill should be used when the user asks to "build an outreach campaign", "prepare design partner outreach",
-  "verify a contact", "draft a campaign", or create an Instantly-ready preview.
+  Use when the user asks to "build an outreach campaign", "prepare design partner
+  outreach", "draft a campaign", "verify a contact", "find this person's email", or
+  wants an Instantly-ready preview. Also use when a contact list is supplied and the
+  stated intent is sending rather than research.
 ---
 
-# Outreach builder
+# Building outreach campaigns
 
 1. Retrieve the existing CRM account and prior replies before generating new outreach.
 2. Use `gtm_rank_best_contact` to rank candidates.

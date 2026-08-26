@@ -1,11 +1,13 @@
 ---
-name: clay-reconciliation
+name: reconciling-clay-snapshots
 description: >
-  This skill should be used when the user asks to "reconcile Clay", "diff the user snapshot",
-  "sync users", "check schema drift", or distinguish deduplication from upsert behavior.
+  Use when the user asks to "reconcile Clay", "diff the user snapshot", "sync users",
+  "check schema drift", or asks what changed between two exports. Also use when
+  deduplication and upsert behavior are being confused, or when a row count is being
+  read as an update count.
 ---
 
-# Clay reconciliation
+# Reconciling Clay snapshots
 
 1. Obtain the latest complete product user snapshot and current Clay rows without changing either system.
 2. Use `user_id` as the default reconciliation key.

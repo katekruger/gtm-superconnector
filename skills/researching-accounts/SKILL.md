@@ -1,11 +1,14 @@
 ---
-name: account-intelligence
+name: researching-accounts
 description: >
-  This skill should be used when the user asks to "research an account", "get account 360",
-  "source ICP companies", "rank accounts", "find the best contact", or evaluate a company for outreach.
+  Use when the user asks to "research an account", "get account 360", "source ICP
+  companies", "rank accounts", "find the best contact at", "who should I talk to at",
+  or asks whether a company is worth pursuing. Also use when a domain or company name
+  is supplied with no further instruction and the intent is evaluation rather than
+  outreach.
 ---
 
-# Account intelligence
+# Researching accounts
 
 1. Search the CRM by domain before enriching anything.
 2. Call `crm_get_account_360` when available. Otherwise compose `search_records` and `get_record`, and label the result partial.
