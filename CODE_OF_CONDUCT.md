@@ -55,9 +55,18 @@ an individual is officially representing the community in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-**stumphkate@gmail.com**. All complaints will be reviewed and investigated
-promptly and fairly.
+reported to the community leaders responsible for enforcement through GitHub:
+
+- **Privately** — open a
+  [security advisory](https://github.com/katekruger/gtmplugin/security/advisories/new).
+  Advisories are visible only to the maintainers, which makes this the right
+  channel for anything sensitive or involving a named individual.
+- **Publicly** — open an
+  [issue](https://github.com/katekruger/gtmplugin/issues) for conduct concerns
+  that do not need to be private.
+
+No email address is published for this purpose. All complaints will be reviewed
+and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
 reporter of any incident.

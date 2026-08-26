@@ -80,7 +80,7 @@ Three layers, in order of strength:
 
 **2. Runtime.** The write path requires *both* `confirm=true` *and* a non-empty `N8N_APPROVED_WORKFLOW_IDS`. With the allowlist unset, retries raise rather than proceed. Called with `confirm=false`, the tool returns a preview and `write_performed: False`.
 
-**3. Procedural.** Every skill ends at an approval gate, and [`skills/building-outreach-campaigns/references/approval-gates.md`](../skills/building-outreach-campaigns/references/approval-gates.md) enumerates them.
+**3. Procedural.** Every skill ends at an approval gate, and [`skills/outreach-builder/references/approval-gates.md`](../skills/outreach-builder/references/approval-gates.md) enumerates them.
 
 The layers are ordered deliberately: a failure at the procedural layer is caught by the runtime layer.
 

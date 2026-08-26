@@ -57,25 +57,46 @@ configuration-level allowlist.
 `userConfig` and is referenced as `${user_config.key}`. Bundled paths use
 `${CLAUDE_PLUGIN_ROOT}`.
 
+## Naming policy
+
+The repo is `gtmplugin`. The plugin is `gtm-superconnector`.
+
+- **Prose, headings, and every install command use the plugin name.**
+- **The repo name appears only inside URLs** (`github.com/katekruger/gtmplugin`).
+
+Do not mix them. "Install gtmplugin" is wrong; "install gtm-superconnector" is right.
+
+## Python floor
+
+**3.12 minimum, and do not lower it.** `servers/gtm_mcp/server.py` uses PEP 604
+unions (`str | None`) in tool signatures, and FastMCP resolves those annotations
+at runtime to build the MCP tool schemas. On 3.11 or earlier that raises at
+import. The floor is a hard technical constraint, not a preference, and it is
+deliberately not aligned with the other plugin repos.
+
 ## Skill frontmatter rules
 
 Enforced by `scripts/check-skills.py` in CI:
 
 ```yaml
 ---
-name: <matches the directory name exactly>
+name: <optional; if present, must match the directory name exactly>
 description: >
   Use when the user asks to "...", "...", or ... .
 ---
 ```
 
-- `name` must equal the directory name
-- `description` must open with **"Use when"** and stay under 1024 characters
+- `description` is **required**. `name` is **optional** — the published spec
+  treats the directory name as authoritative. Where `name` exists it must match
+  the directory. Do not add it where absent; do not strip it where present.
+- `description` must open with **"Use when"**, be third person, and stay under
+  1024 characters
 - The description states **triggers, never the procedure**. A description that
   summarizes the workflow gets followed *instead of* the skill body — this is the
   most damaging skill defect and the reason the check exists
 - Body under 500 words. Heavier material goes in `references/` and is linked
-- Renaming a skill is a **breaking change**; note it in `CHANGELOG.md`
+- **Renaming a skill is a breaking change.** The directory name is the
+  invocation name. Avoid it; if unavoidable, flag it in `CHANGELOG.md`
 
 ## Version bumping
 

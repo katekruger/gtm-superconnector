@@ -1,5 +1,5 @@
 ---
-name: debugging-n8n-workflows
+name: n8n-operations
 description: >
   Use when the user asks to "debug n8n", "inspect a workflow failure", "why did this
   workflow fail", "dry run a workflow", "retry an execution", or wants the
@@ -7,7 +7,7 @@ description: >
   stopped producing results.
 ---
 
-# Debugging n8n workflows
+# n8n operations
 
 1. Call `n8n_health` first.
 2. Use only workflows returned by `n8n_list_approved_workflows`.

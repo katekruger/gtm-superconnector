@@ -5,7 +5,10 @@
 whether a SKILL.md will actually be selected at the right moment, which is what
 these rules protect:
 
-  1. frontmatter `name` matches the directory name
+  1. `description` is present. It is the only required frontmatter key — the
+     published spec treats the directory name as authoritative, so `name` is
+     optional. Where `name` IS present it must match the directory, since a
+     mismatch silently changes how the skill is addressed.
   2. `description` opens with "Use when" — a description that summarizes the
      workflow instead of its triggers gets followed *instead of* the skill body
   3. `description` is under the 1024-character limit
@@ -59,11 +62,14 @@ def main() -> int:
             problems.append(f"{directory.name}: {exc}")
             continue
 
-        name = fields.get("name", "")
+        name = fields.get("name")
         description = fields.get("description", "")
 
-        if name != directory.name:
+        # `name` is optional per the spec; only check it when the author supplied one.
+        if name is not None and name != directory.name:
             problems.append(f"{directory.name}: frontmatter name is {name!r}, expected {directory.name!r}")
+        if not description:
+            problems.append(f"{directory.name}: description is required")
         if not description.startswith("Use when"):
             problems.append(f"{directory.name}: description must open with 'Use when', got {description[:40]!r}")
         if len(description) > DESCRIPTION_LIMIT:

@@ -32,7 +32,7 @@ claude plugin validate .claude-plugin/marketplace.json --strict
 ## Adding a skill to this repo
 
 1. Create `skills/<verb-first-name>/SKILL.md`. Use a gerund or an imperative —
-   `researching-accounts`, not `account-intelligence`.
+   `account-intelligence`, not `account-intelligence`.
 2. Frontmatter is exactly `name` and `description`. `name` must match the
    directory. `description` must open with **"Use when"** and list the phrasings
    a user actually types.
@@ -47,7 +47,7 @@ claude plugin validate .claude-plugin/marketplace.json --strict
 7. Add the skill to the table in `README.md` and a section in `docs/skills.md`.
 
 Renaming an existing skill changes its invocation name and is a **breaking
-change** — say so in `CHANGELOG.md`.
+change** — say so in `CHANGELOG.md`. Prefer not to.
 
 ## Commit convention
 

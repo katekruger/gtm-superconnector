@@ -1,5 +1,5 @@
 ---
-name: reviewing-activation-dropoff
+name: activation-review
 description: >
   Use when the user asks to "find activation drop-off", "analyze inactive users",
   "find users without repositories", "who installed but never used it", or asks which
@@ -7,7 +7,7 @@ description: >
   needs explaining rather than reporting.
 ---
 
-# Reviewing activation drop-off
+# Activation review
 
 1. Obtain the latest complete user dataset rather than a partial contact export.
 2. Call `gtm_detect_activation_dropoff` with the requested inactivity window.

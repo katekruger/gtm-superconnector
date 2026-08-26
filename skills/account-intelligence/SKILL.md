@@ -1,5 +1,5 @@
 ---
-name: researching-accounts
+name: account-intelligence
 description: >
   Use when the user asks to "research an account", "get account 360", "source ICP
   companies", "rank accounts", "find the best contact at", "who should I talk to at",
@@ -8,7 +8,7 @@ description: >
   outreach.
 ---
 
-# Researching accounts
+# Account intelligence
 
 1. Search the CRM by domain before enriching anything. The CRM connector is
    user-supplied and may not be configured — if it is absent, say so, skip to
