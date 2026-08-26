@@ -21,37 +21,82 @@ If you want a tool that will blast 10,000 guessed addresses, this is the wrong r
 ## What's inside
 
 ```
-gtmplugin/
-├── skills/           # 5 Claude skills — the workflows an agent follows
+gtmplugin/                     # the repo root IS the plugin
+├── .claude-plugin/
+│   ├── plugin.json            # manifest, incl. userConfig
+│   └── marketplace.json       # self-marketplace, source "./"
+├── .mcp.json                  # 3 connectors: clay, crm, gtm
+├── skills/                    # 5 skills — the workflows an agent follows
 ├── servers/
-│   ├── gtm_mcp/      # MCP server: scoring, reconciliation, previews, n8n ops
-│   └── contact_tiers/# 4-tier email resolver, ordered by certainty and cost
-├── config/           # Clay Function approval + cost policy
-├── scripts/          # Build and launch
-├── tests/            # Safety invariants and scoring determinism
-└── docs/             # Full reference documentation
+│   ├── gtm_mcp/               # MCP server: scoring, reconciliation, previews, n8n
+│   └── contact_tiers/         # 4-tier email resolver, by certainty and cost
+├── config/                    # Clay Function approval + cost policy (example)
+├── scripts/                   # build, launch, version bump, skill check
+├── tests/                     # safety invariants and scoring determinism
+└── docs/                      # full reference documentation
 ```
 
-## Quick start
+## Requirements
 
-Requires **Python 3.12+**.
+- **Python 3.12+** — the MCP server uses PEP 604 unions that FastMCP resolves at runtime
+- **Claude Code v2.1.x or newer** — for `userConfig` and marketplace install
+- No API keys required to start. Credentials only unlock the n8n and paid-enrichment tiers.
+
+## Install
+
+### From the marketplace
+
+```bash
+/plugin marketplace add katekruger/gtmplugin
+/plugin install gtm-superconnector@gtmplugin
+```
+
+### From a local clone
 
 ```bash
 git clone https://github.com/katekruger/gtmplugin.git
 cd gtmplugin
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
-cp .env.example .env      # optional — see Configuration
 ```
-
-Then add the plugin to Claude Code:
 
 ```bash
-claude plugin install .
+claude plugin marketplace add ./gtmplugin
+claude plugin install gtm-superconnector@gtmplugin
 ```
 
-The scoring, ranking, reconciliation, and preview tools work immediately with no credentials. API keys only unlock the n8n and paid-enrichment tiers.
+`claude plugin install` resolves a plugin **name** from a configured marketplace —
+it does not take a directory path. Adding the local directory as a marketplace
+first is what makes the local install work.
 
-Verify the install:
+### Configuration on install
+
+Two optional settings are declared in the manifest and prompted for at install time:
+
+| Option | What it does |
+|---|---|
+| `crm_mcp_url` | HTTPS URL of *your* CRM MCP server. Leave blank to run without the CRM connector. |
+| `n8n_base_url` | Your n8n instance. Defaults to `http://127.0.0.1:5678`. |
+
+Set them non-interactively with `--config`:
+
+```bash
+claude plugin install gtm-superconnector@gtmplugin --config n8n_base_url=http://127.0.0.1:5678
+```
+
+## Quick start
+
+The deterministic tools work immediately, with no credentials and no network:
+
+```
+Score these accounts for ICP fit: Acme (8 engineers, uses Claude Code,
+open source), Globex (900 employees, no signals).
+```
+
+Acme returns `icp_score: 60.0` with `claude_code_or_codex: true`; Globex returns
+`0.0`. The zero means *no evidence found*, not *evidence of absence* — every
+evidence flag is reported separately so the difference survives.
+
+Verify the server itself loads:
 
 ```bash
 .venv/bin/python -c "import sys; sys.path.insert(0,'servers'); import gtm_mcp.server; print('ok')"
@@ -124,6 +169,39 @@ Every variable is optional. Copy [`.env.example`](.env.example) to `.env` and fi
 
 Both paid tiers are **opt-in per call** (`allow_paid_verification`, `allow_pdl`) in addition to needing a key. Full details: [docs/configuration.md](docs/configuration.md).
 
+## Safety and limits
+
+What this plugin **will not** do, by construction rather than by convention:
+
+- **Send, upload, or launch anything.** Every skill ends at a preview or a dry run.
+  Campaign builds come back `status: "paused"`.
+- **Treat an unverified address as send-ready.** Five of the seven email states are
+  quarantined, and an unrecognized state degrades to `unresolved` rather than to
+  `verified`. It fails closed.
+- **Write to a remote system without two independent guards.** `n8n_retry_execution`
+  needs `confirm=true` *and* a non-empty `N8N_APPROVED_WORKFLOW_IDS`. With the
+  allowlist unset, retries raise rather than proceed.
+- **Spend money implicitly.** Both paid enrichment tiers need an API key *and* a
+  per-call flag, and the response echoes `cost_controls` so spend is visible.
+- **Convert absent evidence into a negative claim.** A missing signal is reported as
+  missing, not as false.
+- **Contact an endpoint you did not configure.** The CRM connector is `userConfig`;
+  there is no maintainer-controlled endpoint anywhere in the plugin.
+
+Honest limits:
+
+- **The local `gtm` connector needs a desktop session.** It is a local stdio process,
+  so it is unavailable in web chat and remote sessions, and an administrator can
+  disable local plugin MCP servers entirely. The skills and the two remote connectors
+  still work; the deterministic tools do not. See
+  [docs/architecture.md](docs/architecture.md#availability-boundary).
+- **Scoring is deterministic, not correct.** It reproduces the same ranking for the
+  same input. Whether the weights match *your* ICP is your call — they are documented
+  in [docs/tools.md](docs/tools.md) so you can disagree with them specifically.
+- **Batch tools cap their input.** Most truncate; reconciliation raises above 10,000
+  rows per side, because a silently truncated diff misreports real rows as missing.
+- **Windows is untested.** The launcher and build script are Bash.
+
 ## Building a distributable plugin
 
 ```bash
@@ -135,9 +213,13 @@ Discovers a Python 3.12+ interpreter, builds a sealed runtime, verifies every de
 ## Development
 
 ```bash
-pip install -r requirements-dev.txt
-pytest -q            # 23 tests
-ruff check servers tests
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements-dev.txt
+
+.venv/bin/pytest -q                        # 23 tests
+.venv/bin/ruff check servers tests         # lint
+python3 scripts/check-skills.py            # skill frontmatter rules
+./scripts/bump-version.sh --check          # version agreement
 ```
 
 See [docs/development.md](docs/development.md) for architecture notes and the contribution workflow, or [CONTRIBUTING.md](CONTRIBUTING.md) to submit a change.
@@ -151,6 +233,21 @@ See [docs/development.md](docs/development.md) for architecture notes and the co
 - **[docs/development.md](docs/development.md)** — local setup, testing, releasing
 - **[CHANGELOG.md](CHANGELOG.md)** — version history
 
+## Contributing
+
+Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) for
+setup, the commit convention, and how to add a skill. Participation is governed by
+the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+Security issues go through
+[private advisories](https://github.com/katekruger/gtmplugin/security/advisories/new),
+not public issues. [SECURITY.md](SECURITY.md) documents exactly what data this
+plugin sends where.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+No third-party assets are redistributed here. The plugin talks to Clay, n8n,
+Hunter, and People Data Labs through their own APIs under your own credentials
+and their respective terms.
