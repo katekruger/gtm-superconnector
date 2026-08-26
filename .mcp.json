@@ -6,7 +6,7 @@
     },
     "crm": {
       "type": "http",
-      "url": "https://crm.example.com/api/mcp"
+      "url": "${user_config.crm_mcp_url}"
     },
     "gtm": {
       "command": "/bin/bash",
@@ -14,7 +14,7 @@
       "env": {
         "CONTACT_TIERS_PATH": "${CLAUDE_PLUGIN_ROOT}/servers",
         "CLAY_FUNCTION_POLICY_PATH": "${CLAUDE_PLUGIN_ROOT}/config/clay-functions.json",
-        "N8N_BASE_URL": "http://127.0.0.1:5678"
+        "N8N_BASE_URL": "${user_config.n8n_base_url}"
       }
     }
   }
