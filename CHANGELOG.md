@@ -6,6 +6,48 @@ All notable changes to this project are documented here. Format follows
 
 ## [Unreleased]
 
+### Added
+
+- **`.claude-plugin/marketplace.json`** — a self-marketplace, so the plugin can be
+  installed at all. Without it there was no install route: `claude plugin
+  marketplace add` resolves exactly this path, and `claude plugin install` only
+  accepts a plugin name from an already-added marketplace. Verified `"source":
+  "./"` against the CLI rather than assuming it, since the docs only show
+  subdirectory sources.
+- **`userConfig`** for `crm_mcp_url` and `n8n_base_url`, replacing a hardcoded
+  personal endpoint. Both optional.
+- `SECURITY.md`, including a table of exactly what data reaches which third party
+  and under what conditions.
+- `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1).
+- `CLAUDE.md` and `AGENTS.md` — instructions for agents working on this repo.
+- `.github/` issue templates, PR checklist, and `dependabot.yml`.
+- `.version-bump.json` and `scripts/bump-version.sh`; CI fails if the four
+  version-carrying files disagree.
+- `scripts/check-skills.py`, enforcing the skill frontmatter rules in CI.
+- `.gitattributes`.
+- README sections: Requirements, a real Quick start, and Safety and limits.
+
+### Changed
+
+- **BREAKING: all five skills renamed to verb-first form.** Invocation names change:
+  `account-intelligence` → `researching-accounts`,
+  `outreach-builder` → `building-outreach-campaigns`,
+  `clay-reconciliation` → `reconciling-clay-snapshots`,
+  `activation-review` → `reviewing-activation-dropoff`,
+  `n8n-operations` → `debugging-n8n-workflows`.
+  Anyone invoking these by their old name must update.
+- Every skill description rewritten to open with "Use when" and lead with real
+  user phrasings instead of `This skill should be used when...`.
+- CI now runs `claude plugin validate --strict` on both manifests, the skill
+  checker, the version-agreement check, and a gitleaks scan over full history.
+- Manifest gains `displayName`.
+
+### Fixed
+
+- **The documented install command did not exist.** The README said `claude plugin
+  install .`; that command takes a plugin name from a marketplace and has no path
+  form. Replaced with the two routes that actually work.
+
 ## [0.2.0] — 2026-08-25
 
 First public release. Renamed, documented, and tested; tool behavior is unchanged.
