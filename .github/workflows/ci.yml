@@ -8,10 +8,12 @@ on:
 
 jobs:
   test:
-    name: Lint, test, and verify the plugin manifest
+    name: Lint, test, and verify the plugin
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so the secrets scan can see every commit
 
       - uses: actions/setup-python@v5
         with:
@@ -30,13 +32,38 @@ jobs:
       - name: Validate JSON manifests
         run: |
           python -c "import json; json.load(open('.claude-plugin/plugin.json'))"
+          python -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
           python -c "import json; json.load(open('.mcp.json'))"
+          python -c "import json; json.load(open('.version-bump.json'))"
           python -c "import json; json.load(open('config/clay-functions.example.json'))"
+
+      - name: Validate the plugin manifests against the Claude Code spec
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .claude-plugin/plugin.json --strict
+          claude plugin validate .claude-plugin/marketplace.json --strict
+
+      - name: Verify skill frontmatter
+        run: python scripts/check-skills.py
+
+      - name: Verify versions agree across every file
+        run: ./scripts/bump-version.sh --check
 
       - name: Verify shell scripts parse
         run: |
-          bash -n scripts/build-plugin.sh
-          bash -n scripts/run-gtm-server.sh
+          for f in scripts/*.sh; do bash -n "$f"; done
 
       - name: Test
         run: pytest -q
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
