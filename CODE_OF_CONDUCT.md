@@ -58,11 +58,11 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement through GitHub:
 
 - **Privately** — open a
-  [security advisory](https://github.com/katekruger/gtmplugin/security/advisories/new).
+  [security advisory](https://github.com/katekruger/gtm-superconnector/security/advisories/new).
   Advisories are visible only to the maintainers, which makes this the right
   channel for anything sensitive or involving a named individual.
 - **Publicly** — open an
-  [issue](https://github.com/katekruger/gtmplugin/issues) for conduct concerns
+  [issue](https://github.com/katekruger/gtm-superconnector/issues) for conduct concerns
   that do not need to be private.
 
 No email address is published for this purpose. All complaints will be reviewed

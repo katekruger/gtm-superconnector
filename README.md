@@ -4,7 +4,7 @@ A [Claude Code](https://claude.com/claude-code) plugin for go-to-market work tha
 
 It bundles five GTM skills with a local MCP server providing deterministic scoring, contact resolution, and guarded automation — wired to Clay and to a CRM endpoint you supply. The organizing principle: **evidence or silence.** An inferred email address is never reported as a real one, absence of evidence is never converted into a negative claim, and no tool sends, uploads, or launches anything without a separate explicit approval.
 
-[![CI](https://github.com/katekruger/gtmplugin/actions/workflows/ci.yml/badge.svg)](https://github.com/katekruger/gtmplugin/actions/workflows/ci.yml)
+[![CI](https://github.com/katekruger/gtm-superconnector/actions/workflows/ci.yml/badge.svg)](https://github.com/katekruger/gtm-superconnector/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 
@@ -21,7 +21,7 @@ If you want a tool that will blast 10,000 guessed addresses, this is the wrong r
 ## What's inside
 
 ```
-gtmplugin/                     # the repo root IS the plugin
+gtm-superconnector/                     # the repo root IS the plugin
 ├── .claude-plugin/
 │   ├── plugin.json            # manifest, incl. userConfig
 │   └── marketplace.json       # self-marketplace, source "./"
@@ -50,21 +50,21 @@ gtmplugin/                     # the repo root IS the plugin
 ### From the marketplace
 
 ```bash
-/plugin marketplace add katekruger/gtmplugin
-/plugin install gtm-superconnector@gtmplugin
+/plugin marketplace add katekruger/gtm-superconnector
+/plugin install gtm-superconnector@gtm-superconnector
 ```
 
 ### From a local clone
 
 ```bash
-git clone https://github.com/katekruger/gtmplugin.git
-cd gtmplugin
+git clone https://github.com/katekruger/gtm-superconnector.git
+cd gtm-superconnector
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 ```bash
-claude plugin marketplace add ./gtmplugin
-claude plugin install gtm-superconnector@gtmplugin
+claude plugin marketplace add ./gtm-superconnector
+claude plugin install gtm-superconnector@gtm-superconnector
 ```
 
 `claude plugin install` resolves a plugin **name** from a configured marketplace —
@@ -83,7 +83,7 @@ Two optional settings are declared in the manifest and prompted for at install t
 Set them non-interactively with `--config`:
 
 ```bash
-claude plugin install gtm-superconnector@gtmplugin --config n8n_base_url=http://127.0.0.1:5678
+claude plugin install gtm-superconnector@gtm-superconnector --config n8n_base_url=http://127.0.0.1:5678
 ```
 
 ## Quick start
@@ -243,7 +243,7 @@ setup, the commit convention, and how to add a skill. Participation is governed 
 the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 Security issues go through
-[private advisories](https://github.com/katekruger/gtmplugin/security/advisories/new),
+[private advisories](https://github.com/katekruger/gtm-superconnector/security/advisories/new),
 not public issues. [SECURITY.md](SECURITY.md) documents exactly what data this
 plugin sends where.
 

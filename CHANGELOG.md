@@ -109,5 +109,5 @@ First public release. Renamed, documented, and tested; tool behavior is unchange
 
 Initial internal release.
 
-[Unreleased]: https://github.com/katekruger/gtmplugin/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/katekruger/gtmplugin/releases/tag/v0.2.0
+[Unreleased]: https://github.com/katekruger/gtm-superconnector/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/katekruger/gtm-superconnector/releases/tag/v0.2.0

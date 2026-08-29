@@ -18,8 +18,8 @@ dependencies = [
 dev = ["pytest>=8.0,<9", "ruff>=0.6,<1"]
 
 [project.urls]
-Homepage = "https://github.com/katekruger/gtmplugin"
-Issues = "https://github.com/katekruger/gtmplugin/issues"
+Homepage = "https://github.com/katekruger/gtm-superconnector"
+Issues = "https://github.com/katekruger/gtm-superconnector/issues"
 
 [build-system]
 requires = ["setuptools>=68"]

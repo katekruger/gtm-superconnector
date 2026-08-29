@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security vulnerability
-    url: https://github.com/katekruger/gtmplugin/security/advisories/new
+    url: https://github.com/katekruger/gtm-superconnector/security/advisories/new
     about: Report privately. Do not open a public issue for a security problem.
   - name: Claude Code plugin documentation
     url: https://code.claude.com/docs/en/plugins

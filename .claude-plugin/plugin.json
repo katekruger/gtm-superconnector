@@ -7,8 +7,8 @@
     "name": "Kate Kruger",
     "url": "https://github.com/katekruger"
   },
-  "homepage": "https://github.com/katekruger/gtmplugin",
-  "repository": "https://github.com/katekruger/gtmplugin",
+  "homepage": "https://github.com/katekruger/gtm-superconnector",
+  "repository": "https://github.com/katekruger/gtm-superconnector",
   "license": "MIT",
   "keywords": ["gtm", "sales", "crm", "clay", "outreach", "n8n", "mcp"],
   "userConfig": {

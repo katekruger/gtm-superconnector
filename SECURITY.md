@@ -3,7 +3,7 @@
 ## Reporting a vulnerability
 
 Report privately through
-[GitHub Security Advisories](https://github.com/katekruger/gtmplugin/security/advisories/new).
+[GitHub Security Advisories](https://github.com/katekruger/gtm-superconnector/security/advisories/new).
 Please do not open a public issue.
 
 Expect an acknowledgement within 7 days and an assessment within 30.

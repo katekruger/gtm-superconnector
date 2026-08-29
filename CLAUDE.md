@@ -59,12 +59,10 @@ configuration-level allowlist.
 
 ## Naming policy
 
-The repo is `gtmplugin`. The plugin is `gtm-superconnector`.
+The repo and the plugin share one name: `gtm-superconnector`.
 
-- **Prose, headings, and every install command use the plugin name.**
-- **The repo name appears only inside URLs** (`github.com/katekruger/gtmplugin`).
-
-Do not mix them. "Install gtmplugin" is wrong; "install gtm-superconnector" is right.
+Use it verbatim in prose, headings, install commands, and URLs
+(`github.com/katekruger/gtm-superconnector`). There is nothing to disambiguate.
 
 ## Python floor
 

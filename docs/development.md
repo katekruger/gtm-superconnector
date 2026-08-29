@@ -5,8 +5,8 @@
 Requires **Python 3.12+**. The server uses PEP 604 union syntax (`str | None`) in signatures that FastMCP resolves at runtime to build tool schemas, so older interpreters will fail at import.
 
 ```bash
-git clone https://github.com/katekruger/gtmplugin.git
-cd gtmplugin
+git clone https://github.com/katekruger/gtm-superconnector.git
+cd gtm-superconnector
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements-dev.txt
 ```
