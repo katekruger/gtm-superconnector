@@ -6,6 +6,19 @@ All notable changes to this project are documented here. Format follows
 
 ## [Unreleased]
 
+### Changed
+
+- **`AGENTS.md` is now the source of truth for repo-maintenance instructions;
+  `CLAUDE.md` is a one-line `@AGENTS.md` pointer.** Previously inverted:
+  `CLAUDE.md` held the real content and `AGENTS.md` pointed to it. No content
+  was lost in the flip — see `docs/decisions/0001-accept-the-root-claude-md-warning.md`
+  for why a root `CLAUDE.md` still ships despite the plugin validator's warning
+  about it.
+- CI expanded: `ci.yml` now runs across a Python 3.12/3.13 matrix; added
+  `zizmor.yml` for GitHub Actions workflow security scanning and `release.yml`
+  for tag-triggered builds. All actions SHA-pinned, all checkouts
+  `persist-credentials: false`.
+
 ### Added
 
 - **`.claude-plugin/marketplace.json`** — a self-marketplace, so the plugin can be
