@@ -5,22 +5,37 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
+  # A real Python version matrix, not just the 3.12 floor: servers/gtm_mcp/server.py
+  # relies on PEP 604 unions in tool signatures (see AGENTS.md, "Python floor"),
+  # so 3.13 is the useful thing to also catch regressions on.
   test:
-    name: Lint, test, and verify the plugin
+    name: Lint, test, and verify the plugin (py${{ matrix.python-version }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
+          persist-credentials: false
           fetch-depth: 0   # full history so the secrets scan can see every commit
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
           cache: pip
 
       - name: Install dependencies
+        # requirements-dev.txt is the authoritative dependency source for this
+        # repo (see AGENTS.md, "Dependencies") — pyproject.toml mirrors it for
+        # packaging metadata only, so CI never installs from it.
         run: pip install -r requirements-dev.txt
 
       - name: Lint
@@ -82,11 +97,14 @@ jobs:
   secrets:
     name: Secret scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
+          persist-credentials: false
           fetch-depth: 0
       - name: gitleaks
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

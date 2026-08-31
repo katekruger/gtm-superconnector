@@ -3,12 +3,14 @@
 # have not consciously accepted.
 #
 # Why not just `--strict`: this repo is both a plugin (installed by users) and a
-# project (worked in by contributors). CLAUDE.md serves the second role, but the
-# validator only knows about the first, and warns that a root CLAUDE.md ships
-# inside the plugin without being loaded as plugin context. That warning is
-# correct and we are accepting it deliberately — moving the instructions into a
-# skill would ship repo-maintenance guidance to every user of the plugin, which
-# is worse.
+# project (worked in by contributors). AGENTS.md serves the second role (CLAUDE.md
+# is just a one-line `@AGENTS.md` pointer to it), but the validator only knows
+# about the first, and warns that a root CLAUDE.md ships inside the plugin
+# without being loaded as plugin context. That warning is correct — the pointer
+# really is inert once installed — and we are accepting it deliberately rather
+# than moving the instructions into a skill, which would ship repo-maintenance
+# guidance to every user of the plugin. See
+# docs/decisions/0001-accept-the-root-claude-md-warning.md.
 #
 # Any OTHER warning still fails the build, so the gate keeps its teeth.
 set -euo pipefail
