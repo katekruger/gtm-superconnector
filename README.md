@@ -247,6 +247,14 @@ Security issues go through
 not public issues. [SECURITY.md](SECURITY.md) documents exactly what data this
 plugin sends where.
 
+## See also
+
+Every project here shares one idea: a GTM system should refuse to act on data it cannot verify.
+
+[n8n-operator](https://github.com/katekruger/n8n-operator) — the governed control plane behind this plugin's n8n operations, usable on its own with a full audit trail.
+
+[campaign-preflight](https://github.com/katekruger/campaign-preflight) — the same evidence-or-silence rule applied to outbound campaigns: 76 deterministic checks, and never a pass it could not verify.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
