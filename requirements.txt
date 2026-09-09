@@ -1,6 +1,6 @@
 # Runtime dependencies for the bundled GTM MCP server.
 # Pinned to compatible ranges; see docs/development.md for the upgrade policy.
-fastmcp>=2.12,<3
-httpx>=0.27,<1
-requests>=2.31,<3
-python-dotenv>=1.0,<2
+fastmcp>=4.0.3,<5
+httpx>=0.28.1,<1
+requests>=2.34.2,<3
+python-dotenv>=1.2.3,<2

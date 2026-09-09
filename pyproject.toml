@@ -8,21 +8,21 @@ license = { text = "MIT" }
 authors = [{ name = "Kate Kruger" }]
 keywords = ["gtm", "mcp", "clay", "n8n", "outreach"]
 dependencies = [
-    "fastmcp>=2.12,<3",
-    "httpx>=0.27,<1",
-    "requests>=2.31,<3",
-    "python-dotenv>=1.0,<2",
+    "fastmcp>=4.0.3,<5",
+    "httpx>=0.28.1,<1",
+    "requests>=2.34.2,<3",
+    "python-dotenv>=1.2.3,<2",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0,<9", "ruff>=0.6,<1"]
+dev = ["pytest>=9.1.1,<10", "ruff>=0.16.6,<1"]
 
 [project.urls]
 Homepage = "https://github.com/katekruger/gtm-superconnector"
 Issues = "https://github.com/katekruger/gtm-superconnector/issues"
 
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=84.0.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
